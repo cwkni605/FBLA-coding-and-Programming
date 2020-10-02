@@ -1,30 +1,21 @@
-var questionType = 
-{
-    check:"<>"
-}
 
 var questionList = 
 [
     ["1this is a question test tralse or frue","check","tralse","frue",],
-    ["1this is a question test good, bad or ugly","select","good","bad","ugly"],
+    ["1this is a question test good, bad or ugly","radio","good","bad","ugly"],
+    ["1this is a question test tralse or frue","radio","tralse","frue"],
     ["1this is a question test tralse or frue","check","tralse","frue"],
     ["1this is a question test tralse or frue","check","tralse","frue"],
-    ["1this is a question test tralse or frue","check","tralse","frue"],
     ["2this is a question test tralse or frue","check","tralse","frue"],
-    ["2this is a question test good, bad or ugly","select","good","bad","ugly"],
+    ["2this is a question test good, bad or ugly","radio","good","bad","ugly"],
     ["2this is a question test tralse or frue","check","tralse","frue"],
     ["2this is a question test tralse or frue","check","tralse","frue"],
     ["2this is a question test tralse or frue","check","tralse","frue"],
     ["3this is a question test tralse or frue","check","tralse","frue"],
-    ["3this is a question test good, bad or ugly","select","good","bad","ugly"],
+    ["3this is a question test good, bad or ugly","radio","good","bad","ugly"],
     ["3this is a question test tralse or frue","check","tralse","frue"],
     ["3this is a question test tralse or frue","check","tralse","frue"],
-    ["3this is a question test tralse or frue","check","tralse","frue"],
-    ["4this is a question test tralse or frue","check","tralse","frue"],
-    ["4this is a question test good, bad or ugly","select","good","bad","ugly"],
-    ["4this is a question test tralse or frue","check","tralse","frue"],
-    ["4this is a question test tralse or frue","check","tralse","frue"],
-    ["4this is a question test tralse or frue","check","tralse","frue"]
+    ["3this is a question test tralse or frue","check","tralse","frue"]
 ];
 
 var answerList = 
@@ -43,23 +34,20 @@ var answerList =
     [1],
     [1],
     [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
+    [1]
 ]
 
 var form = document.getElementById("form");
 var used = [];
 var notUsed = false;
+var formValidity = true;
+
 function diminishingRandNum()
 {
     notUsed = false;
     for (let i = 0; notUsed != true; i++)
     {
-        var num = Math.floor(Math.random()*20);
+        var num = Math.floor(Math.random() * questionList.length);
         if(num != used[0] || used[0] == undefined)
         {
             if(num != used[1] || used[1] == undefined)
@@ -78,6 +66,14 @@ function diminishingRandNum()
                 }
             }
         }
+    }
+}
+
+if (questionList.length !== answerList.length)
+{
+    if (confirm("The question and answer lists do NOT match. Do you want to reload the page?"))
+    {
+        location.reload();
     }
 }
 
@@ -101,11 +97,6 @@ for (let i = 0; i < 5; i++)
         {
             //type
         }
-        //else if(Index == 2)
-        //{
-            //correct answer
-            //answer = temp;
-        //}
         else if(Index > 1)
         {
             //questions
@@ -119,7 +110,7 @@ for (let i = 0; i < 5; i++)
                 fieldset.appendChild(tempLabel);
                 fieldset.appendChild(tempQuestion);
             }
-            else if(questionList[questionNumber][1] == "select")
+            else if(questionList[questionNumber][1] == "radio")
             {
                 var tempQuestion = document.createElement("input");
                 tempQuestion.type = "radio";
@@ -135,10 +126,44 @@ for (let i = 0; i < 5; i++)
     document.getElementsByTagName("form")[0].appendChild(fieldset);
 }
 var tempSubmit = document.createElement("button");
-tempSubmit.type = "submit";
+if (tempSubmit.addEventListener)
+{
+    tempSubmit.addEventListener("mousedown", submit, false);
+}
+else if (tempSubmit.attachEvent)
+{
+    tempSubmit.attachEvent("onmousedown", submit);
+}
+tempSubmit;
 tempSubmit.appendChild(document.createTextNode("Submit"));
 document.getElementsByTagName("form")[0].appendChild(tempSubmit);
 
-function log(out) {
+function log(out)
+{
     console.log(out);
+}
+
+// this validates the check boxes
+function submit(evt)
+{
+    let form = document.getElementsByTagName("form")[0];
+    formValidity = true;
+    if (evt.preventDefault)
+    {
+        evt.preventDefault();
+    }
+    else
+    {
+        evt.returnValue = false;
+    }
+    //validity checks
+
+
+    if (formValidity === true)
+    {
+        form.submit();
+    }
+    else {
+        scroll(0,0);
+    }
 }

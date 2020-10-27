@@ -1,21 +1,21 @@
 
 var questionList = 
 [
-    ["1this is a question test tralse or frue","check","tralse","frue",],
-    ["1this is a question test good, bad or ugly","radio","good","bad","ugly"],
-    ["1this is a question test tralse or frue","radio","tralse","frue"],
-    ["1this is a question test tralse or frue","check","tralse","frue"],
-    ["1this is a question test tralse or frue","check","tralse","frue"],
-    ["2this is a question test tralse or frue","check","tralse","frue"],
-    ["2this is a question test good, bad or ugly","radio","good","bad","ugly"],
-    ["2this is a question test tralse or frue","check","tralse","frue"],
-    ["2this is a question test tralse or frue","check","tralse","frue"],
-    ["2this is a question test tralse or frue","check","tralse","frue"],
-    ["3this is a question test tralse or frue","check","tralse","frue"],
-    ["3this is a question test good, bad or ugly","radio","good","bad","ugly"],
-    ["3this is a question test tralse or frue","check","tralse","frue"],
-    ["3this is a question test tralse or frue","check","tralse","frue"],
-    ["3this is a question test tralse or frue","check","tralse","frue"]
+    ["1 this is a question test tralse or frue","check","tralse","frue",],
+    ["2 this is a question test good, bad or ugly","radio","good","bad","ugly"],
+    ["3 this is a question test tralse or frue","radio","tralse","frue"],
+    ["4 this is a question test tralse or frue","check","tralse","frue"],
+    ["5 this is a question test tralse or frue","check","tralse","frue"],
+    ["6 this is a question test tralse or frue","check","tralse","frue"],
+    ["7 this is a question test good, bad or ugly","radio","good","bad","ugly"],
+    ["8 this is a question test tralse or frue","check","tralse","frue"],
+    ["9 this is a question test tralse or frue","check","tralse","frue"],
+    ["10 this is a question test tralse or frue","check","tralse","frue"],
+    ["11 this is a question test tralse or frue","check","tralse","frue"],
+    ["12 this is a question test good, bad or ugly","radio","good","bad","ugly"],
+    ["13 this is a question test tralse or frue","check","tralse","frue"],
+    ["14 this is a question test tralse or frue","check","tralse","frue"],
+    ["15 this is a question test tralse or frue","check","tralse","frue"]
 ];
 
 var answerList = 
@@ -48,25 +48,14 @@ function diminishingRandNum()
     for (let i = 0; notUsed != true; i++)
     {
         var num = Math.floor(Math.random() * questionList.length);
-        if(num != used[0] || used[0] == undefined)
+        if(used.find((trying)=>{return trying === num;}) === undefined)
         {
-            if(num != used[1] || used[1] == undefined)
-            {
-                if(num != used[2] || used[2] == undefined)
-                {
-                    if(num != used[3] || used[3] == undefined)
-                    {
-                        if(num != used[4] || used[4] == undefined)
-                        {
-                            used.push(num);
-                            notUsed = true;
-                            return num;
-                        }
-                    }
-                }
-            }
+            notUsed = true;
         }
     }
+    used.push(num);
+    notUsed = true;
+    return num;
 }
 
 if (questionList.length !== answerList.length)
@@ -90,7 +79,7 @@ for (let i = 0; i < 5; i++)
         {
             //question
             var tempLabel = document.createElement("h2");
-            tempLabel.appendChild(document.createTextNode(temp));
+            tempLabel.appendChild(document.createTextNode(`${i+1}. `+temp));
             fieldset.appendChild(tempLabel);
         }
         else if(Index == 1)
@@ -99,28 +88,23 @@ for (let i = 0; i < 5; i++)
         }
         else if(Index > 1)
         {
+            var tempQuestion = document.createElement("input");
+            tempQuestion.name = Index;
+            tempQuestion.dataset.questionId = questionNumber;
+            var tempLabel = document.createElement("label");
+            tempLabel.appendChild(document.createTextNode(temp));
+            fieldset.appendChild(tempLabel);
             //questions
             if (questionList[questionNumber][1] == "check")
             {
-                var tempQuestion = document.createElement("input");
                 tempQuestion.type = "checkbox";
-                tempQuestion.name = questionNumber;
-                var tempLabel = document.createElement("label");
-                tempLabel.appendChild(document.createTextNode(temp));
-                fieldset.appendChild(tempLabel);
-                fieldset.appendChild(tempQuestion);
+                
             }
             else if(questionList[questionNumber][1] == "radio")
             {
-                var tempQuestion = document.createElement("input");
                 tempQuestion.type = "radio";
-                tempQuestion.required = true;
-                tempQuestion.name = questionNumber;
-                var tempLabel = document.createElement("label");
-                tempLabel.appendChild(document.createTextNode(temp));
-                fieldset.appendChild(tempLabel);
-                fieldset.appendChild(tempQuestion);
             }
+            fieldset.appendChild(tempQuestion);
         }
     }
     document.getElementsByTagName("form")[0].appendChild(fieldset);
@@ -134,20 +118,14 @@ else if (tempSubmit.attachEvent)
 {
     tempSubmit.attachEvent("onmousedown", submit);
 }
-tempSubmit;
 tempSubmit.appendChild(document.createTextNode("Submit"));
 document.getElementsByTagName("form")[0].appendChild(tempSubmit);
-
-function log(out)
-{
-    console.log(out);
-}
 
 // this validates the check boxes
 function submit(evt)
 {
     let form = document.getElementsByTagName("form")[0];
-    formValidity = true;
+    formValidity = false;
     if (evt.preventDefault)
     {
         evt.preventDefault();
@@ -157,7 +135,7 @@ function submit(evt)
         evt.returnValue = false;
     }
     //validity checks
-
+    
 
     if (formValidity === true)
     {

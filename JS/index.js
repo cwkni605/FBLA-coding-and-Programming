@@ -1,4 +1,5 @@
 
+
 var questionList = 
 [
     ["1 this is a question test tralse or frue","check","tralse","frue",],
@@ -39,12 +40,11 @@ var answerList =
 
 var form = document.getElementById("form");
 var used = [];
-var notUsed = false;
 var formValidity = true;
 
-function diminishingRandNum()
+function diminishingRandNum(number)
 {
-    notUsed = false;
+    var notUsed = false;
     for (let i = 0; notUsed != true; i++)
     {
         var num = Math.floor(Math.random() * questionList.length);
@@ -55,6 +55,13 @@ function diminishingRandNum()
     }
     used.push(num);
     notUsed = true;
+    if(number !== undefined)
+    {
+        while (number < used.length)
+        {
+            used.shift();
+        }
+    }
     return num;
 }
 
@@ -135,7 +142,7 @@ function submit(evt)
         evt.returnValue = false;
     }
     //validity checks
-    
+    checkValidity();
 
     if (formValidity === true)
     {

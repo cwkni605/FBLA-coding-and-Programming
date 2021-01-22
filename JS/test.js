@@ -16,7 +16,7 @@ var questionList =
     ["12 this is a question test good, bad or ugly","radio","good","bad","ugly"],
     ["13 this is a question test tralse or frue","check","tralse","frue"],
     ["14 this is a question test tralse or frue","check","tralse","frue"],
-    ["15 this is a question test tralse or frue","check","tralse","frue"]
+    ["15 this is a question test tralse or frue","text","Answer:"]
 ];
 
 var answerList = 
@@ -96,8 +96,8 @@ for (let i = 0; i < 5; i++)
         else if(Index > 1)
         {
             var tempQuestion = document.createElement("input");
-            tempQuestion.name = Index;
-            tempQuestion.dataset.questionId = questionNumber;
+            tempQuestion.name = questionNumber+"-"+i;
+            tempQuestion.dataset.questionId = questionNumber+"-"+i+"-"+(Index-2);
             var tempLabel = document.createElement("label");
             tempLabel.appendChild(document.createTextNode(temp));
             fieldset.appendChild(tempLabel);
@@ -110,6 +110,14 @@ for (let i = 0; i < 5; i++)
             else if(questionList[questionNumber][1] == "radio")
             {
                 tempQuestion.type = "radio";
+            }
+            else if(questionList[questionNumber][1] == "text")
+            {
+                tempQuestion.type = "text";
+            }
+            if(questionList[questionNumber][1] !== "text")
+            {
+                tempQuestion.value = questionNumber+"-"+i+"-"+(Index-2);
             }
             fieldset.appendChild(tempQuestion);
         }
@@ -151,4 +159,9 @@ function submit(evt)
     else {
         scroll(0,0);
     }
+}
+
+function checkValidity()
+{
+
 }

@@ -1,0 +1,27 @@
+test.html?0-0=0-0-0&0-0=0-0-1&6-1=6-1-2&3-2=3-2-0&13-3=13-3-1&14-4=chief+
+
+0-0
+0-0-0
+
+0-0
+0-0-1
+
+6-1
+6-1-2
+
+3-2
+3-2-0
+
+13-3     <-- double
+13-3-1   <-- triplet
+
+14-4
+Chief+
+     /\
+    is a space
+
+I cant use triplets for the answers due to the use of text box answers not using the triplet answer format.
+
+I will have to use a twin answer analyzer that finds all answers of the same name (which is the question's array number
+followed be the question number) then gets their answer and adds it to the question's answered list for saving and scoring.
+The question's answered list will be stored in an object which is then stored in an asosiative array to store it. 

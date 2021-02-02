@@ -97,7 +97,6 @@ for (let i = 0; i < 5; i++)
         {
             var tempQuestion = document.createElement("input");
             tempQuestion.name = questionNumber+"-"+i;
-            tempQuestion.dataset.questionId = questionNumber+"-"+i+"-"+(Index-2);
             var tempLabel = document.createElement("label");
             tempLabel.appendChild(document.createTextNode(temp));
             fieldset.appendChild(tempLabel);

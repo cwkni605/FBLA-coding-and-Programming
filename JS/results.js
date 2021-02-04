@@ -42,7 +42,6 @@ else
     }
 }
 console.log("step 3");
-console.log(answerSheets);
 for (let I = 0; I < answerSheets.length; I++) {
     console.log("I:"+I);
     const element = answerSheets[I];
@@ -51,6 +50,7 @@ for (let I = 0; I < answerSheets.length; I++) {
     var tempForm = document.createElement('form');
     tempForm.appendChild(tempTitle);
     document.body.appendChild(tempForm);
+    diminishingRandNumClear();
     for (let i = 0; i < 5; i++)
     {
         console.log("i:"+i);

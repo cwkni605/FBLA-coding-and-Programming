@@ -1,4 +1,7 @@
+
 console.log("data start");
+
+
 var questionList = 
 [
     ["1 this is a question test tralse or frue","check","tralse","frue",],
@@ -46,7 +49,7 @@ if (questionList.length !== answerList.length)
 }
 
 var used = [];
-function diminishingRandNum(number, limit)
+function diminishingRandNum(number)
 {
     var notUsed = false;
     for (let i = 0; notUsed != true; i++)
@@ -68,4 +71,29 @@ function diminishingRandNum(number, limit)
     }
     return num;
 }
-console.log("Data End");
+function diminishingRandNumClear()
+{
+    used = [];
+}
+
+
+
+function processThis(array, limiter, callback) { 
+    console.log("Running function"); 
+
+    if (typeof callback == "function"){
+        for (let Index = 0; Index < limiter; Index++) {
+            callback(a,b,c);
+        }
+    }
+    else
+    {
+        throw "The callback function in not a function.";
+    }
+} 
+var a,b,c,d,e,f;
+processThis(3,3,(c,d,e)=>{
+    console.log(c);
+    console.log(d);
+    console.log(e);
+});

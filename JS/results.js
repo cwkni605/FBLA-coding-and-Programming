@@ -4,12 +4,12 @@ if(post !== undefined){
     if (typeof(Storage) !== "undefined") {
         // Store
         if(!localStorage.getItem("testSaves").startsWith("null")){
-            localStorage.setItem("testSaves", localStorage.getItem("testSaves")+post);
+            //localStorage.setItem("testSaves", localStorage.getItem("testSaves")+post);
         }
         else{
             localStorage.setItem("testSaves", post);
         }
-        //localStorage.setItem("testSaves", null);
+        localStorage.setItem("testSaves", null);
     }
     else
     {

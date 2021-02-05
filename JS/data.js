@@ -78,22 +78,38 @@ function diminishingRandNumClear()
 
 
 
-function processThis(array, limiter, callback) { 
-    console.log("Running function"); 
+function processThis(max, limiter, callback) {
+    var used = [];
 
     if (typeof callback == "function"){
         for (let Index = 0; Index < limiter; Index++) {
-            callback(a,b,c);
+            var notUsed = false;
+            for (let i = 0; notUsed != true; i++)
+            {
+                var num = Math.floor(Math.random() * max);
+                if(used.find((trying)=>{return trying === num;}) === undefined)
+                {
+                    notUsed = true;
+                }
+            }
+            used.push(num);
+            notUsed = true;
+            if(number !== undefined)
+            {
+                while (number < used.length)
+                {
+                    used.shift();
+                }
+            }
+            var validRandNum = num;
+            callback(validRandNum);
         }
     }
     else
     {
         throw "The callback function in not a function.";
     }
-} 
-var a,b,c,d,e,f;
-processThis(3,3,(c,d,e)=>{
-    console.log(c);
-    console.log(d);
-    console.log(e);
-});
+}
+//processThis(3,3,(d)=>{
+    //console.log(d);
+//});

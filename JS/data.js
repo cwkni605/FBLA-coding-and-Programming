@@ -1,7 +1,3 @@
-
-console.log("data start");
-
-
 var questionList = 
 [
     ["1 this is a question test tralse or frue","check","tralse","frue",],
@@ -23,21 +19,21 @@ var questionList =
 
 var answerList = 
 [
-    [1,2],
+    [0,1],
+    [1],
+    [0],
+    [0],
+    [0],
+    [0],
     [2],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1],
-    [1]
+    [0],
+    [0],
+    [0],
+    [0],
+    [0],
+    [0],
+    [0],
+    ["chief+"]
 ]
 
 if (questionList.length !== answerList.length)
@@ -48,68 +44,27 @@ if (questionList.length !== answerList.length)
     }
 }
 
-var used = [];
-function diminishingRandNum(number)
-{
-    var notUsed = false;
-    for (let i = 0; notUsed != true; i++)
-    {
-        var num = Math.floor(Math.random() * questionList.length);
-        if(used.find((trying)=>{return trying === num;}) === undefined)
-        {
-            notUsed = true;
-        }
-    }
-    used.push(num);
-    notUsed = true;
-    if(number !== undefined)
-    {
-        while (number < used.length)
-        {
-            used.shift();
-        }
-    }
-    return num;
-}
-function diminishingRandNumClear()
-{
-    used = [];
-}
 
 
-
-function processThis(max, limiter, callback) {
+/** Similar to a for loop and has three parameters. 
+ * The first is a maximum for the callback random number. The second is the amount of times the function will loop. 
+ * The third parameter is a callback that has two parameters, the current index of the loop and the random number between zero and the given maximum that has not been given previously in the loop. 
+ * @param {number} maxNumber
+ * @param {number} loopLimiter
+ * @param {Function} callback
+*/
+function diminishingRandNum(maxNumber, loopLimiter, callback){
+    if (typeof callback !== "function") throw "The callback function in not a function.";
+    if (maxNumber < loopLimiter) throw "The maximum for the random number cannot be below the loop count.";
     var used = [];
-
-    if (typeof callback == "function"){
-        for (let Index = 0; Index < limiter; Index++) {
-            var notUsed = false;
-            for (let i = 0; notUsed != true; i++)
-            {
-                var num = Math.floor(Math.random() * max);
-                if(used.find((trying)=>{return trying === num;}) === undefined)
-                {
-                    notUsed = true;
-                }
-            }
-            used.push(num);
-            notUsed = true;
-            if(number !== undefined)
-            {
-                while (number < used.length)
-                {
-                    used.shift();
-                }
-            }
-            var validRandNum = num;
-            callback(validRandNum);
+    for (let Index = 0; Index < loopLimiter; Index++) {
+        var notUsed = false;
+        for (let i = 0; notUsed != true; i++) {
+            var num = Math.round(Math.random() * maxNumber);
+            if(used.find((trying)=>{return trying === num;}) === undefined) notUsed = true;
         }
-    }
-    else
-    {
-        throw "The callback function in not a function.";
+        used.push(num);
+        var validRandNum = num;
+        callback(Index, validRandNum);
     }
 }
-//processThis(3,3,(d)=>{
-    //console.log(d);
-//});

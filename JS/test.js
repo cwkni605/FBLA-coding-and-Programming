@@ -1,27 +1,26 @@
 var form = document.getElementById("form");
 var formValidity = true;
 
-for (let i = 0; i < 5; i++)
+diminishingRandNum(questionList.length-1, 5, (i, questionNumber)=>
 {
-    var questionNumber = diminishingRandNum();
     var form = document.getElementsByTagName("form")[0];
     var fieldset = document.createElement("fieldset");
 
-    for (let Index = 0; Index < questionList[questionNumber].length; Index++)
+    for (let ii = 0; ii < questionList[questionNumber].length; ii++)
     {
-        const temp = questionList[questionNumber][Index];
-        if(Index == 0)
+        const temp = questionList[questionNumber][ii];
+        if(ii == 0)
         {
             //question
             var tempLabel = document.createElement("h2");
             tempLabel.appendChild(document.createTextNode(`${i+1}. `+temp));
             fieldset.appendChild(tempLabel);
         }
-        else if(Index == 1)
+        else if(ii == 1)
         {
             //type
         }
-        else if(Index > 1)
+        else if(ii > 1)
         {
             var tempQuestion = document.createElement("input");
             tempQuestion.name = questionNumber+"-"+i;
@@ -44,13 +43,13 @@ for (let i = 0; i < 5; i++)
             }
             if(questionList[questionNumber][1] !== "text")
             {
-                tempQuestion.value = questionNumber+"-"+i+"-"+(Index-2);
+                tempQuestion.value = (ii-2);
             }
             fieldset.appendChild(tempQuestion);
         }
     }
     document.getElementsByTagName("form")[0].appendChild(fieldset);
-}
+});
 var tempSubmit = document.createElement("button");
 if (tempSubmit.addEventListener)
 {

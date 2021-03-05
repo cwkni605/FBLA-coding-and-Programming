@@ -49,9 +49,9 @@ if (questionList.length !== answerList.length)
 /** Similar to a for loop and has three parameters. 
  * The first is a maximum for the callback random number. The second is the amount of times the function will loop. 
  * The third parameter is a callback that has two parameters, the current index of the loop and the random number between zero and the given maximum that has not been given previously in the loop. 
- * @param {number} maxNumber
- * @param {number} loopLimiter
- * @param {Function} callback
+ * @param {number} maxNumber -This is the maximum for the random number generator.
+ * @param {number} loopLimiter -This is the amount of loops.
+ * @param {Function} callback -This is the code you want to run.
 */
 function diminishingRandNum(maxNumber, loopLimiter, callback){
     if (typeof callback !== "function") throw "The callback function in not a function.";

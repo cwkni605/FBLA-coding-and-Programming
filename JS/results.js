@@ -1,16 +1,17 @@
 var post = location.search;
 if(post !== undefined){
-    if (typeof(Storage) !== "undefined") {
-        // Store
+    if (typeof(Storage) !== "undefined") {// checks to see if local storage works
+        // Store the incoming data
         if(localStorage.getItem("testSaves") == null || !localStorage.getItem("testSaves").startsWith("null")){
             //localStorage.setItem("testSaves", localStorage.getItem("testSaves")+post);
         }
+        // resets data
         else{
             localStorage.setItem("testSaves", post);
         }
         //localStorage.setItem("testSaves", null);
     }
-    else
+    else// error if cannot store data in local storage
     {
         while(true)
         {

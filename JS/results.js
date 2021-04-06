@@ -3,7 +3,7 @@ if(post !== undefined){
     if (typeof(Storage) !== "undefined") {// checks to see if local storage works
         // Store the incoming data
         if(localStorage.getItem("testSaves") == null || !localStorage.getItem("testSaves").startsWith("null")){
-            //localStorage.setItem("testSaves", localStorage.getItem("testSaves")+post);
+            localStorage.setItem("testSaves", localStorage.getItem("testSaves")+post);
         }
         // resets data
         else{

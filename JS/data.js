@@ -1,40 +1,22 @@
 var questionList = 
 [
-    ["1 this is a question test tralse or frue","check","tralse","frue",],
-    ["2 this is a question test good, bad or ugly","radio","good","bad","ugly"],
-    ["3 this is a question test tralse or frue","radio","tralse","frue"],
-    ["4 this is a question test tralse or frue","check","tralse","frue"],
-    ["5 this is a question test tralse or frue","check","tralse","frue"],
-    ["6 this is a question test tralse or frue","check","tralse","frue"],
-    ["7 this is a question test good, bad or ugly","radio","good","bad","ugly"],
-    ["8 this is a question test tralse or frue","check","tralse","frue"],
-    ["9 this is a question test tralse or frue","check","tralse","frue"],
-    ["10 this is a question test tralse or frue","check","tralse","frue"],
-    ["11 this is a question test tralse or frue","check","tralse","frue"],
-    ["12 this is a question test good, bad or ugly","radio","good","bad","ugly"],
-    ["13 this is a question test tralse or frue","check","tralse","frue"],
-    ["14 this is a question test tralse or frue","check","tralse","frue"],
-    ["15 this is a question test tralse or frue","text","Answer:"]
+    ["What does FBLA stand for?","text","Answer:"],
+    ["Who is the FBLA national President","radio","Drew Lojewski","Faith Kierzek","-Keshav Ramesh","-Donald Trump"],
+    ["Who is the founder of FBLA?","radio","Traivis Johnson","Hamden L. Forkner","Emily Berkstone","Jean Buckley"],
+    ["When was the concept of FBLA first developed?","radio","2005","2002","1985","1937"],
+    ["What are the FBLA official colors?","check","blue","red","orange","gold"],
+    ["How many different divisions are there for FBLA?","radio","11","3","8","4"]
 ];
 
 var answerList = 
 [
-    [0,1],
-    [1],
-    [0],
-    [0],
-    [0],
-    [0],
-    [2],
-    [0],
-    [0],
-    [0],
-    [0],
-    [0],
-    [0],
-    [0],
-    ["chief+"]
-]
+    ["Future+Business+Leaders+of+America"],//0
+    [0],                                   //1
+    [1],                                   //2
+    [3],                                   //3
+    [0,3],                                 //4
+    [3]                                    //5
+];
 
 if (questionList.length !== answerList.length)
 {
@@ -55,6 +37,7 @@ if (questionList.length !== answerList.length)
 */
 function diminishingRandNum(maxNumber, loopLimiter, callback){
     if (typeof callback !== "function") throw "The callback function in not a function.";
+    console.log(maxNumber, loopLimiter);
     if (maxNumber < loopLimiter) throw "The maximum for the random number cannot be below the loop count.";
     var used = [];
     for (let Index = 0; Index < loopLimiter; Index++) {

@@ -37,7 +37,6 @@ if (questionList.length !== answerList.length)
 */
 function diminishingRandNum(maxNumber, loopLimiter, callback){
     if (typeof callback !== "function") throw "The callback function in not a function.";
-    console.log(maxNumber, loopLimiter);
     if (maxNumber < loopLimiter) throw "The maximum for the random number cannot be below the loop count.";
     var used = [];
     for (let Index = 0; Index < loopLimiter; Index++) {

@@ -3,13 +3,13 @@ if(post !== undefined){
     if (typeof(Storage) !== "undefined") {// checks to see if local storage works
         // Store the incoming data
         if(localStorage.getItem("testSaves") == null || !localStorage.getItem("testSaves").startsWith("null")){
-            localStorage.setItem("testSaves", localStorage.getItem("testSaves")+post);
+            localStorage.setItem("testSaves", localStorage.getItem("testSaves")+post);// <== saves data
         }
         // resets data
         else{
             localStorage.setItem("testSaves", post);
         }
-        //localStorage.setItem("testSaves", null);
+        //localStorage.setItem("testSaves", null); //erases data saved
     }
     else// error if cannot store data in local storage
     {
@@ -102,8 +102,14 @@ for (let I = 0; I < answerSheets.length; I++) {
                 {
                     tempLabel.style.color = "Green";
                 }
-                else if(answerSheets[I][i][1].includes(answerList[questionNumber]) && answerSheets[I][i][1].length > 1)tempLabel.style.color = "Green";
-                else tempLabel.style.color = "red";
+                else if(answerSheets[I][i][1].includes(answerList[questionNumber]) && answerSheets[I][i][1].length > 1)
+                {
+                    tempLabel.style.color = "Green";
+                }
+                else
+                {
+                    tempLabel.style.color = "red";
+                }
                 tempLabel.appendChild(document.createTextNode(temp));
                 fieldset.appendChild(tempLabel);
                 //questions
@@ -129,6 +135,10 @@ for (let I = 0; I < answerSheets.length; I++) {
                     if(answerSheets[I][i][1].includes(answerList[questionNumber]))
                     {
                         tempQuestion.placeholder = answerSheets[I][i][1].replace("+", " ");
+                    }
+                    else
+                    {
+                        tempQuestion.placeholder = "Your: " + answerSheets[I][i][1] + " Correct: " + answerList[questionNumber];
                     }
                 }
                 if(questionList[questionNumber][1] !== "text")

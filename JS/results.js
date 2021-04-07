@@ -138,7 +138,7 @@ for (let I = 0; I < answerSheets.length; I++) {
                     }
                     else
                     {
-                        tempQuestion.placeholder = "Your: " + answerSheets[I][i][1] + " Correct: " + answerList[questionNumber];
+                        tempQuestion.value = "Your: " + answerSheets[I][i][1].replaceAll("+", " ") + " Correct: " + answerList[questionNumber][0].replaceAll("+", " ");
                     }
                 }
                 if(questionList[questionNumber][1] !== "text")

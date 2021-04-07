@@ -26,7 +26,6 @@ diminishingRandNum(questionList.length-1, 5, (i, questionNumber)=>
             tempQuestion.name = questionNumber+"-"+i;
             var tempLabel = document.createElement("label");
             tempLabel.appendChild(document.createTextNode(temp));
-            fieldset.appendChild(tempLabel);
             //questions
             if (questionList[questionNumber][1] == "check")
             {
@@ -46,6 +45,8 @@ diminishingRandNum(questionList.length-1, 5, (i, questionNumber)=>
                 tempQuestion.value = (ii-2);
             }
             fieldset.appendChild(tempQuestion);
+            fieldset.appendChild(tempLabel);
+            fieldset.appendChild(document.createElement("br"));
         }
     }
     document.getElementsByTagName("form")[0].appendChild(fieldset);
@@ -65,11 +66,12 @@ document.getElementsByTagName("form")[0].appendChild(tempSubmit);
 // this validates the check boxes
 function submit(evt)
 {
+    evt.preventDefault();
     let form = document.getElementsByTagName("form")[0];
     formValidity = false;
     if (evt.preventDefault)
     {
-        evt.preventDefault();
+        
     }
     else
     {
@@ -80,7 +82,7 @@ function submit(evt)
 
     if (formValidity === true)
     {
-        form.submit();
+        //form.submit();
     }
     else {
         scroll(0,0);

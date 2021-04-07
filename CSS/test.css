@@ -1,14 +1,14 @@
 body
 {
-    width: 100%;
+    width: 99%;
     height: 100%;
-    background-color: #6a73ff;
+    background-color: rgb(211, 211, 211);
 }
 button
 {
     transition-duration: 250ms;
+    font-size: 30px;
     background-color: brown;
-    font-size: 1em;
     border: rgb(43, 0, 0) 2px solid;
     border-radius: 5px;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
@@ -18,7 +18,12 @@ button:hover
     transition-duration: 250ms;
     border-radius: 7px;
     background-color: rgb(134, 34, 34);
+    border-color: #00099E;
     box-shadow: 2.5px 5px 5px rgba(0, 0, 0, 0.7);
+}
+fieldset
+{
+    background-color: whitesmoke;
 }
 a{
     margin-left: 7vw;

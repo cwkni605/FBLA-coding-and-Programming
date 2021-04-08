@@ -35,6 +35,7 @@ diminishingRandNum(questionList.length-1, 5, (i, questionNumber)=>
             else if(questionList[questionNumber][1] == "radio")
             {
                 tempQuestion.type = "radio";
+                tempQuestion.defaultChecked = true;
             }
             else if(questionList[questionNumber][1] == "text")
             {

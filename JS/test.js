@@ -30,16 +30,22 @@ diminishingRandNum(questionList.length-1, 5, (i, questionNumber)=>
             if (questionList[questionNumber][1] == "check")
             {
                 tempQuestion.type = "checkbox";
+                if (ii== 2) {
+                    //tempQuestion.defaultChecked = true;
+                }
                 
             }
             else if(questionList[questionNumber][1] == "radio")
             {
                 tempQuestion.type = "radio";
-                tempQuestion.defaultChecked = true;
+                if (ii== 2) {
+                    //tempQuestion.defaultChecked = true;
+                }
             }
             else if(questionList[questionNumber][1] == "text")
             {
                 tempQuestion.type = "text";
+                tempQuestion.placeholder = "Answer:";
             }
             if(questionList[questionNumber][1] !== "text")
             {
@@ -53,44 +59,47 @@ diminishingRandNum(questionList.length-1, 5, (i, questionNumber)=>
     document.getElementsByTagName("form")[0].appendChild(fieldset);
 });
 var tempSubmit = document.createElement("button");
-if (tempSubmit.addEventListener)
-{
-    tempSubmit.addEventListener("mousedown", submit, false);
-}
-else if (tempSubmit.attachEvent)
-{
-    tempSubmit.attachEvent("onmousedown", submit);
-}
 tempSubmit.appendChild(document.createTextNode("Submit"));
 document.getElementsByTagName("form")[0].appendChild(tempSubmit);
 
 // this validates the check boxes
-function submit(evt)
+function validateForm()
 {
-    evt.preventDefault();
-    let form = document.getElementsByTagName("form")[0];
-    formValidity = false;
-    if (evt.preventDefault)
+    let valid = true;
+    var form = document.forms[0];
+    console.log(form);
+    for(let I = 1; I < form.children.length-1; I++)
     {
-        
+        let feildset = form.children[I];
+        let feildValid = false;
+        for (let i = 0; i < feildset.children.length; i++) {
+            const element = feildset.children[i];
+            if(element.type == "radio" || element.type == "check")
+            {
+                if (element.checked == true)
+                {
+                    feildValid = true;
+                }
+            }
+            else if(element.type == "text")
+            {
+                console.log(element.type);
+                console.log(element.value);
+                if (element.value !== "")
+                {
+                    feildValid = true;
+                }
+            }
+        }
+        console.log(feildValid);
+        if (feildValid == false) {
+            valid = false;
+        }
     }
-    else
+    // check if valid and then handle
+    if(valid == false)
     {
-        evt.returnValue = false;
+        //alert("The form must be filled out");
+        return valid;
     }
-    //validity checks
-    checkValidity();
-
-    if (formValidity === true)
-    {
-        //form.submit();
-    }
-    else {
-        scroll(0,0);
-    }
-}
-
-function checkValidity()
-{
-
 }

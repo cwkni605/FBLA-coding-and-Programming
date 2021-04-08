@@ -2,7 +2,7 @@ body
 {
     width: 99%;
     height: 100%;
-    background-color: #6a73ff;
+    background-color: rgb(211, 211, 211);
 }
 button
 {
@@ -22,6 +22,10 @@ button:hover
 }
 a{
     margin-left: 7vw;
+}
+fieldset
+{
+    background-color: whitesmoke;
 }
 input[type=text]
 {

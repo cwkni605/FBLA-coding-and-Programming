@@ -18,13 +18,16 @@ button:hover
     transition-duration: 250ms;
     border-radius: 7px;
     background-color: rgb(134, 34, 34);
-    border-color: #00099E;
     box-shadow: 2.5px 5px 5px rgba(0, 0, 0, 0.7);
+}
+a{
+    margin-left: 7vw;
 }
 fieldset
 {
     background-color: whitesmoke;
 }
-a{
-    margin-left: 7vw;
+input[type=text]
+{
+    width: 80%;
 }

@@ -45,14 +45,22 @@ diminishingRandNum(questionList.length-1, 5, (i, questionNumber)=>
             else if(questionList[questionNumber][1] == "text")
             {
                 tempQuestion.type = "text";
-                tempQuestion.placeholder = "Answer:";
+                tempQuestion.placeholder = "Answer Here!";
             }
             if(questionList[questionNumber][1] !== "text")
             {
                 tempQuestion.value = (ii-2);
             }
-            fieldset.appendChild(tempQuestion);
-            fieldset.appendChild(tempLabel);
+            if(questionList[questionNumber][1] == "text")
+            {
+                fieldset.appendChild(tempLabel);
+                fieldset.appendChild(tempQuestion);
+            }
+            else
+            {
+                fieldset.appendChild(tempQuestion);
+                fieldset.appendChild(tempLabel);
+            }
             fieldset.appendChild(document.createElement("br"));
         }
     }

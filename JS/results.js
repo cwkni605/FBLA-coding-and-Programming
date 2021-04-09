@@ -9,7 +9,7 @@ if(post !== undefined){
         else{
             localStorage.setItem("testSaves", post);
         }
-        //localStorage.setItem("testSaves", null); //erases data saved
+        //localStorage.setItem("testSaves", null); //erases data saved when uncommented
     }
     else// error if cannot store data in local storage
     {
@@ -63,6 +63,10 @@ else
             location.assign("index.html");
         }
     }
+}
+if (answerSheets.length == 0)
+{
+    document.getElementById("result").innerHTML = "You have not taken any tests. Take a test <a id='link' href='test.html'>here</a>."
 }
 for (let I = 0; I < answerSheets.length; I++) {
     const currentSheet = answerSheets[I];

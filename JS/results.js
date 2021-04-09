@@ -150,6 +150,7 @@ for (let I = 0; I < answerSheets.length; I++) {
                     tempQuestion.value = ii-2;
                 }
                 fieldset.appendChild(tempQuestion);
+                fieldset.appendChild(document.createElement("br"));
             }
         }
         document.getElementsByTagName("form")[I].appendChild(fieldset);
